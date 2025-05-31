@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Js</title>
+</head>
+
+<body>
+    <h1>Async Javascript</h1>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <h1 id="demo7"></h1>
+    <h1 id="demo8"></h1>
+    <script>
+        function mydisplayer(some) {
+            document.getElementById("demo").innerHTML = some;
+        }
+        function myfirst() {
+            mydisplayer("hello");
+        }
+        function mysecond() {
+            mydisplayer("goodbay");
+        }
+        function mythirld() {
+            mydisplayer("good afternoon")
+        }
+        mysecond();
+        mythirld();
+        myfirst();
+
+        function show(result) {
+            document.getElementById("demo2").innerHTML = result;
+        }
+        function show1(result1) {
+            document.getElementById("demo3").innerHTML = result1;
+        }
+        function sumall(...num) {
+            return num.reduce((a, b) => a + b, 0)
+        }
+        let display = sumall(3, 5, 7, 9);
+        setTimeout(() => {
+            show(display);
+        }, 3000);
+
+        function sum(a, b) {
+            let sum = a + b;
+            show1(sum)
+        }
+        sum(5, 5);
+
+        function myfunc(something) {
+            document.getElementById("demo4").innerHTML = something;
+        }
+        function sum_all(a, b, callback) {
+            let sum = a + b;
+            callback(sum);
+        }
+        sum_all(3, 8, myfunc);
+
+
+        const myNumbers = [4, 1, -20, -7, 5, 9, -6];
+        const posnumbers = removeNeg(myNumbers, (x) => x >= 0);
+        document.getElementById("demo5").innerHTML = posnumbers;
+        function removeNeg(number, callback) {
+            const myArray = [];
+            for (const x of number) {
+                if (callback(x)) {
+                    myArray.push(x)
+                }
+            }
+            return myArray;
+        }
+
+        setTimeout(myfunction, 3000);
+        function myfunction() {
+            document.getElementById("demo6").innerHTML = "I love My India"
+        }
+        function mylove(value) {
+            document.getElementById("demo7").innerHTML = value;
+        }
+        setTimeout(function () {
+            mylove("I love My Imrana");
+        }, 3000)
+        setTimeout(() => {
+            mylove("I love My Family")
+        }, 5000);
+
+
+        function clock() {
+            const d = new Date();
+            let hours = d.getHours();
+            const minutes = d.getMinutes().toString().padStart(2, '0');
+            const seconds = d.getSeconds().toString().padStart(2, '0');
+            const ampm = hours>=12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            document.getElementById("demo8").innerHTML =
+                hours + " : " + minutes + " : " + seconds + " : " + ampm
+
+
+        }
+        // console.log(clock())
+        setInterval(clock, 1000)
+    </script>
+</body>
+
+</html>

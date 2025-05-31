@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <h1>constructor Function</h1>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo02"></p>
+    <script>
+        function Person(name,lastName,age,eyecolor)
+        {
+           this.name = name;
+           this.lastName = lastName;
+           this.age = age;
+           this.eyecolor = eyecolor;
+        }
+        Person.prototype.nationallity = "Hindi";
+        const myfather = new Person("Shafique","Ahmad",70,"black");
+        const mymother = new Person("Hafizan","Khatoon",65,"blue");
+        Person.prototype.bio = function(){
+            return this.name + " " + this.lastName + " " + this.age + " " + this.eyecolor;
+        }
+        Person.prototype.mom_bio = function(){
+           return this.name + " " + this.lastName + " " + this.age + " " + this.eyecolor;
+
+        }
+        console.log(myfather.name + " " + mymother.name + " " + myfather.nationallity + " "  + myfather.bio() + " " + mymother.mom_bio());
+
+        // ......................Object Assign and Object Entries...............................//
+        const customer1 = {
+            firstName : "Aasif",
+            lastName : "Ali",
+            age : 34,
+            eyecolor : "Blue",
+        }
+        const customer2 = {
+            firstName : "Imrana",
+            lastName : "Khatoon"
+        }
+        // console.log(customer1.age)
+        Object.assign(customer1,customer2)
+        // let assign = Object.values(customer2);  
+        // same as object-entries...........//
+        let assign = Object.entries(customer2);
+        document.getElementById("demo").innerHTML ="the value of " +  assign
+      console.log(assign);
+      const fruits = {
+        banana : 300,
+        orange : 200,
+        apple : 100,
+        grapes : 50
+      }
+
+      let mix_fruit = "<ul>";
+      for(let[fruit,amount]of Object.entries(fruits)){
+        mix_fruit+= "<li>" + fruit + ": " + amount + "</li>"
+      } 
+       mix_fruit+="</ul>"
+     document.getElementById("demo1").innerHTML = mix_fruit;
+     //.......................fromEntries()......................//
+     const veg = [
+        ["potato",300],
+        ["tomato",200],
+        ["carrot",100],
+     ]
+    //  console.log(veg[0])
+    const myveg = Object.fromEntries(veg);
+    console.log(myveg.tomato)
+    
+
+    // <!-- Object Group by -->
+     const stsationary = [
+        {name:"pen", quantity:300},
+        {name:"pencil",quantity:200},
+        {name:"copy",quantity:100},
+        {name:"raser",quantity:50},
+        {name:"sharpner",quantity:10},
+     ]
+     function mycallback({quantity}){
+        return quantity > 100 ? "ok" : "low";
+     }
+     const result = Object.groupBy(stsationary,mycallback);
+     let text = "these fruits are ok : <br>";
+     for(let [x,y] of result.ok.entries()){
+        text+= y.name + " " + y.quantity + "<br>";
+     }
+     text+= "these fruits are low : <br>";
+     for(let [x,y] of result.low.entries()){
+        text+= y.name + " " + y.quantity + "<br>"
+     }
+     document.getElementById("demo02").innerHTML = text;
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>class</title>
+</head>
+<body>
+    <h1>Class</h1>
+    <script>
+        class Car{
+            constructor(name ,year){
+                this.name = name,
+                this.year = year
+            }
+            age(){
+                const date = new Date();
+                return date.getFullYear()-this.year;
+            }
+        }
+        const mycar1 = new Car("Volvo",2014);
+        const mycar2 = new Car("BMW",2010);
+        console.log("my first car is " ,mycar1.name , "and my car age is ", mycar1.age())
+
+        class Truck{
+            constructor(brand){
+                this.brand = brand;
+            }
+            persent(){
+                return "I have a " + this.brand;
+            }
+        }
+        class Model extends Truck{
+            constructor(brand,model){
+                super(brand);
+                this.model = model;
+            }
+            show(){
+                return this.persent() + ', it is a ' + this.model;
+            }
+        }
+        const mytruck  = new Model("Ford","Mustag")
+        console.log(mytruck.show());
+
+        class Family{
+            constructor(name){
+                this.name = name;
+            }
+            get cname(){
+                return this.name;
+            }
+            set cname(x){
+                this.name = x;
+            }
+        }
+        const myfamily = new Family("Saeem");
+        myfamily.cname = "Imrana";
+        console.log(myfamily.cname)
+        class Birds{
+            constructor(birds_name){
+                this.birds_name = birds_name;
+            }
+            static voice(x){
+                return x.birds_name +" and voice Cho cho cho......"
+            }
+        }
+        const mybirds = new Birds("Sparrow")
+        console.log("birds " ,Birds.voice(mybirds))
+    </script>
+</body>
+</html>

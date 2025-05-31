@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+</head>
+
+<body>
+    <h1>Function</h1>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo5"></p>
+    <script>
+        let sum = myfunction(3, 5, 7, 9, 10)
+        function myfunction(...num) {
+            return num.reduce((a, b) => a + b, 0)
+        }
+        document.getElementById("demo").innerHTML = sum;
+        const myfunc = function (a, b) {
+            return a * b;
+            // return arguments.length;
+        }
+        let multiply = myfunc(2, 4) + 2 ** 4;
+        document.getElementById("demo1").innerHTML = multiply;
+        const mynum = new Function("a", "b", "return a*b")
+        let constr = mynum(3, 5);
+        document.getElementById("demo3").innerHTML = constr;
+        // .....self invoked function..........//
+        (function () {
+            document.getElementById("demo2").innerHTML = "Hello i am called autometically"
+        })
+            ();
+        (function (...num) {
+            let sumoff = num.reduce((a, b) => a + b, 0)
+            document.getElementById("demo5").innerHTML = sumoff;
+        })
+            (3, 5, 7, 9);
+
+        // arguments length.......//
+        const argu = function (a, b) {
+            // return arguments.length;
+            return a * b;
+        }
+        //   console.log(argu(3,5,6,6));
+        console.log(argu.toString());
+        // arrow functions....//
+        const x = (...num) => num.reduce((a, b) => a + b, 0)
+        console.log(x(3, 5, 7))
+
+        function arg(a, b) {
+            if (b === undefined)
+                b = 3;
+
+
+            return a * b;
+        }
+        console.log(arg(4));
+        function defaultvalue(a, b = 10) {
+            return a + b;
+        }
+        console.log(defaultvalue(5))
+
+        function sum_(...args) {
+            let sum = 0;
+            for (let arg of args) {
+                sum += arg;
+
+            }
+            return sum;
+        }
+        let x_ = sum_(3, 5, 8, 9, 10);
+        console.log(x_);
+
+        // find max.......//
+        function findmax() {
+            let max = -Infinity;
+            for (let i = 0; i < arguments.length; i++) {
+                if (arguments[i] > max) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+
+        console.log("the largest number is " + " " + findmax(4, 2, 7, 9, 2, 5))
+        console.log("the minimum number is " + " " + findmin(4, 2, 7, 9, 2, 5))
+        //.............findmin...............//
+        function findmin() {
+            let min = Infinity;
+            for (let i = 0; i < arguments.length; i++) {
+                if (arguments[i] < min) {
+                    min = arguments[i]
+                }
+            }
+            return min;
+        }
+        function sumall() {
+            let sum = 0;
+            for (let i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+        console.log(sumall(34, 54, 23, 89))
+
+        // ...................Call method and Apply.....................//
+        const person = {
+            fullName: function (city, country) {
+                return this.firstName + " " + this.lastName + " " + city + " " + country;
+            }
+        }
+        const person1 = {
+            firstName: "Aasif",
+            lastName: "Ali",
+        }
+        const person2 = {
+            firstName: "Saeem",
+            lastName: "Ahmad",
+        }
+        let find = person.fullName.call(person2, "Bijnor", "India")
+        let find1 = person.fullName.apply(person1, ["Najibabad", "India"])
+        console.log(find)
+        // console.log(find1)
+        setTimeout(() => {
+            console.log("the full name user first " + find1)
+        }, 5000)
+
+        //....................Bind().....................//
+        const customer = {
+            firstName: "Imrana",
+            lastName: "Khatoon",
+            fullNamee: function () {
+                return this.firstName + " " + this.lastName;
+            }
+        }
+        const customer1 = {
+            firstName: "Afsana",
+            lastName: "Begum",
+        }
+        const all_cus = customer.fullNamee.bind(customer1);
+        // console.log(all_cus())
+        // console.log( setTimeout(all_cus(),300))
+        setTimeout(() => {
+            console.log("The full name Borrow Object " + all_cus())
+        }, 5000)
+
+
+        ///////////..........Print Multiple Customer Names One by One with Delay...................///////////
+        const suppliers = [
+            { firstName: "Imrana", lastName: "Khatoon" },
+            { firstName: "Afsana", lastName: "Begum" },
+            { firstName: "Sara", lastName: "Ali" },
+            { firstName: "Nida", lastName: "Parveen" }
+        ];
+        function getallsuppler() {
+            return this.firstName + " " + this.lastName;
+        }
+        suppliers.forEach((supplier, index) => {
+            const allsupplier = getallsuppler.bind(supplier);
+            setTimeout(() => {
+                console.log("all suppliers is " + allsupplier())
+            }, index * 3000);
+        })
+
+        let a = 4;
+        function expone() {
+            return a ** 2
+        }
+        console.log("the exponenent of ", expone())
+
+        // let counter = 0;
+        // function add(){
+        //     // let counter = 0;
+        //    return counter += 1;
+        // }
+        // console.log("increment is " , add())
+        // console.log("increment is " , add())
+        // console.log("increment is " , add())
+
+        //  ,,,,,..................Closer...................//
+        function mycounter(){
+            let counter = 0;
+            return function(){
+                counter ++;
+                return counter
+            }
+        }
+        const add = mycounter();
+        console.log("the couner is " , add())
+        console.log("the couner is " , add())
+        console.log("the couner is " , add())
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bank Account</title>
+</head>
+<body>
+  <h2>Simple Bank Account</h2>
+
+  <label>Current Balance: </label>
+  <input type="text" id="balance" readonly><br><br>
+
+  <label>Amount: </label>
+  <input type="number" id="amount"><br><br>
+
+  <button onclick="depositMoney()">Deposit</button>
+  <button onclick="withdrawMoney()">Withdraw</button>
+
+  <script>
+    // Create bank account using closure
+    function createAccount() {
+      let balance = 1000;
+
+      return {
+        deposit(amount) {
+          if (amount > 0) {
+            balance += amount;
+          }
+        },
+        withdraw(amount) {
+          if (amount > 0 && amount <= balance) {
+            balance -= amount;
+          } else {
+            alert("Invalid or insufficient amount.");
+          }
+        },
+        getBalance() {
+          return balance;
+        }
+      };
+    }
+
+    // Initialize account
+    const myAccount = createAccount();
+
+    // Helper: update balance field
+    function updateBalanceField() {
+      document.getElementById("balance").value = `$${myAccount.getBalance()}`;
+    }
+
+    // Actions
+    function depositMoney() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      myAccount.deposit(amount);
+      updateBalanceField();
+    }
+
+    function withdrawMoney() {
+      const amount = parseFloat(document.getElementById("amount").value);
+      myAccount.withdraw(amount);
+      updateBalanceField();
+    }
+
+    // On load
+    updateBalanceField();
+  </script>
+</body>
+</html>

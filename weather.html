@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clock with Temperature</title>
+</head>
+<body>
+
+<h2 id="demo8"></h2>
+
+<script>
+const apiKey = 'https://openweathermap.org/api'; 
+let temperature = '';
+
+function updateClock() {
+    const d = new Date();
+    let hours = d.getHours();
+    let minutes = d.getMinutes().toString().padStart(2, '0');
+    let seconds = d.getSeconds().toString().padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+
+    document.getElementById("demo8").innerHTML =
+        `${hours} : ${minutes} : ${seconds} ${ampm} | Temperature: ${temperature}`;
+}
+
+function fetchTemperature(lat, lon) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            temperature = `${data.main.temp}°C`;
+        })
+        .catch(error => {
+            temperature = 'N/A';
+            console.error('Error fetching temperature:', error);
+        });
+}
+
+// Get user's location and temperature
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+        fetchTemperature(position.coords.latitude, position.coords.longitude);
+    }, () => {
+        temperature = 'Location denied';
+    });
+} else {
+    temperature = 'Geolocation not supported';
+}
+
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Try And Catch</title>
+    <style>
+        .text-center{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">Try And Catch</h1>
+    <div class="container">
+        <h1 class="text-center">Number Between 5 to 10</h1>
+        <input type="text" name="" id="demo">
+        <button type="button" onclick="getData()">Submit</button>
+        <p id="demo01"></p>
+        <button onclick="this.style.display='none'">Click to reomve me</button>
+    </div>
+
+    <script>
+        //  "use strict";
+       function getData(){
+        const message = document.getElementById("demo01");
+        message.innerHTML = "";
+        let x = document.getElementById("demo").value;
+        try{
+            if(x.trim()=="") throw "Empty" ;
+            if(isNaN(x)) throw "Not a number";
+            x=Number(x);
+            if(x<5) throw "too low";
+            if(x>10) throw "too high"
+        }catch(err){
+          message.innerHTML = "Input is " +err
+        }finally{
+            document.getElementById("demo").value;
+        }
+       }
+    //   let carname = "volvo";
+    //   myfunction();
+    //   function myfunction(){
+    //     let name = "aasif"
+    //     console.log(carname);
+    //     console.log("my name is " , name)
+    //   }
+    //   little();
+    //   function little(){
+    //     littlebird = "sparrow";
+    //   }
+    //   console.log(littlebird);
+    //   var car ="BMW";
+    //   console.log(window.car);
+    //   var x;
+    //   x=5;
+    //   console.log(x);
+    //   var x = 5;
+    try{
+      carname = "saab";
+      var carname = "volvo"
+      console.log(carname)
+    }catch(err){
+      console.log(err);
+    }
+    var x = 5;
+    console.log(x ,y);
+   var y=7;
+  
+    x = 3.14;
+   console.log(x);
+      function strict(){
+        "use strict";
+        y = 3.14;
+        console.log(y)
+      }
+      strict()
+
+      const person = {
+        firstName : "Aasif",
+        lastname : "Ali",
+        id: 121,
+        fullName : function(){
+            return this.firstName + " " + this.lastname;
+        }
+      }
+      console.log(person.fullName())
+      let z = this;
+      console.log(z)
+      function thi(){
+      return this;
+      }
+     console.log(thi()) ;
+     const person1 = {
+        fullname : function(){
+          return  this.firstname + " " + this.lastName;
+        }
+     }
+     const person2 = {
+        firstname: "Saeem",
+        lastName:"Ali",
+     }
+    //  console.log(person1.fullname.call(person2));
+    let full= person1.fullname.bind(person2)
+    //  console.log(person1.fullname.bind()(person2));
+    console.log(full())
+    class Car{
+        constructor(name,year){
+            this.name = name;
+            this.year = year;
+            
+
+        }
+        age () {
+           const date = new Date();
+           return date.getFullYear() - this.year;
+        }
+    }
+      const mcar = new Car("BMW" , 2011);
+      const mcar1 = new Car("Volvo",2012);
+      console.log(mcar.name + " " + mcar1.age())
+    </script>
+   
+    
+</body>
+</html>
