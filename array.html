@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+
+<body>
+    <h1>Array</h1>
+    <p id="demo"></p>
+    <script>
+        let myarray = ["aasif", "saeem", "shagufa", "imrana", "Afsar"];
+        myarray.push("Afasana");
+        console.log(myarray);
+        const remove = myarray.slice(1)
+        console.log(remove);
+        const myslice = myarray.splice(2, 3)
+        console.log(myslice)
+        myarray.length = 2;
+        let text = "";
+        for (let i = 0; i < myarray.length; i++) {
+            text += "<li>" +myarray[i] + "<li>";
+        }
+        document.getElementById("demo").innerHTML = text
+        const[b,...rest]=myarray;
+        console.log(rest)
+    </script>
+</body>
+
+</html>

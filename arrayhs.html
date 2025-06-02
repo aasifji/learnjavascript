@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <h1>Array Js</h1>
+    <input type="text" name="" id="fruitInput" placeholder="Enter Fruit Name">
+    <button onclick="addfruit()">Add Fruit</button>
+    <h2 id="add_ftuits"></h2>
+
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <button onclick="myfunction()">TrY it</button>
+    <script>
+        const fruits = ["B","A","O","G"]
+        console.log(fruits.toString());
+        function myfunction(){
+          fruits[fruits.length] = "Lemon"
+          let text_ = "<ul>"
+          for(let i = 0;i<fruits.length;i++){
+              text_ += "<li>" + fruits[i] + "</li>"
+          }
+          text_+= "</ul>";
+            console.log(fruits.join(" * "));
+            document.getElementById("demo1").innerHTML = text_;
+        }
+        fruits[fruits.length] = "Apple";
+        console.log(fruits.toLocaleString());
+        let text = "<ul>";
+            for(let i = 0; i<fruits.length;i++){
+                text+= "<li> " + fruits[i] + "</li>"
+            }
+            text += "</ul>"
+            document.getElementById("demo").innerHTML = text.toUpperCase();
+//....................Add Fruits Functions.................//
+let addallfruits = [];
+            function addfruit(){
+                const input = document.getElementById("fruitInput");
+                const newfruit = input.value.trim();
+                // console.log(newfruit);
+                if(newfruit){
+                    addallfruits[addallfruits.length] = newfruit;
+                    input.value = "";
+                    // console.log(newfruit)
+                    
+                }
+            }
+    </script>
+</body>
+</html>

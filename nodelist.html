@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node List</title>
+    <style>
+        .hover-effect:hover {
+            cursor: pointer;
+        }
+
+        .backchange {
+            background-color: burlywood;
+            max-width: 146px;
+            border-radius: 20px;
+            padding-left: 10px;
+        }
+
+        .container {
+            background-color: blue;
+            max-width: 171px;
+            padding: top;
+            padding: 1px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="backchange">Node List</h1>
+    </div>
+    <p>Hello Aasif</p>
+    <p>Hello Saeem</p>
+    <p>Hello Shagufa</p>
+    <p id="demo"></p>
+    <div id="d001">
+        <p>This is a first paragraph</p>
+        <p id="remo">This is a annother paragraph.............</p>
+    </div>
+
+    <button onclick="myfunction()">change color all P</button>
+    <button onclick="addpara()">change color all P</button>
+
+    <script>
+        const mynodelist = document.querySelectorAll("p");
+        console.log(mynodelist)
+        document.getElementById("demo").innerHTML = "the content of second p " + mynodelist[1].innerHTML;
+        function myfunction() {
+            for (let i = 0; i < mynodelist.length; i++) {
+                let currentcolor = mynodelist[i].style.color;
+                mynodelist[i].style.color = (currentcolor == "red") ? "black" : "red";
+
+            }
+        }
+        const para = document.createElement("p")
+
+        const node = document.createTextNode("this is a second paragraph")
+        para.appendChild(node);
+        //   console.log(node)
+        const element = document.getElementById("d001");
+        element.appendChild(para).style.color = "red";
+
+        //    function addpara(){
+        const para1 = document.createElement("h1");
+        para1.textContent = "Click Me to Change Color";
+        para1.style.color = "black";
+        para1.style.hover;
+        para1.onclick = function () {
+            this.style.color = (this.style.color == "blue") ? "yellow" : "blue";
+        }
+        para1.classList.add("hover-effect")
+        document.getElementById("d001").appendChild(para1)
+        // para1.onmouseenter = function () {
+        //     this.style.color = "green";
+        // };
+
+        // para1.onmouseleave = function () {
+        //     // Optional: revert or keep current color
+        // };
+
+        //    }
+
+        const para2 = document.createElement("h4");
+        para2.textContent = "please mouse over me amd mouse leave me";
+        const parent = document.getElementById("d001").appendChild(para2);
+        para2.onmouseenter = function () {
+            this.style.color = "cyan"
+        };
+        para2.onmouseleave = function () {
+            this.style.color = "tan";
+        }
+        para2.classList.add("hover-effect");
+        // const child = document.getElementById("remo");
+        // parent.remove(child);
+
+        const para3 = document.createElement("h2");
+        para3.textContent = "Please help me";
+        const parent3 = document.getElementById("d001").appendChild(para3);
+        // parent3.insertBefore(para3);
+        // parent3.insertBefore(para3);
+
+    </script>
+</body>
+
+</html>

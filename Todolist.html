@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <input type="text" name="" id="fruitInput" placeholder="Enter Fruit Name">
+    <button onclick="addfruit()">Add Fruit</button>
+    <p id="demo"></p>
+    <script>
+        let fruits = JSON.parse(localStorage.getItem("fruits")) || [];
+        function renderlist() {
+            let fruittext = "<ul>";
+            for (let i = 0; i < fruits.length; i++) {
+                fruittext += `<li>  ${fruits[i]} <button onclick="deleteFruit(${i})">Delete</button> </li>`;
+            }
+            fruittext += "</ul";
+            document.getElementById("demo").innerHTML = fruittext;
+
+        }
+        function addfruit() {
+            const input = document.getElementById("fruitInput");
+            const newfruit = input.value.trim();
+            // console.log(newfruit);
+            if (newfruit) {
+                // fruits[fruits.length] = newfruit;
+                fruits.push(newfruit);
+                localStorage.setItem("fruits", JSON.stringify(fruits));
+                input.value = "";
+                renderlist();
+            }
+            else {
+                alert("please enter a fruits name");
+            }
+        }
+        function deleteFruit(index) {
+            fruits.splice(index, 1)
+            localStorage.setItem("fruits", JSON.stringify(fruits));
+            renderlist()
+        }
+        renderlist();
+    </script>
+</body>
+
+</html>

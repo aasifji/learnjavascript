@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>display</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit,
+                minmax(min(100%,20rem),1fr)
+            );
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card"><input type="text" name="" id=""></div>
+        <div class="card"><input type="text" name="" id=""></div>
+        <div class="card"><input type="text" name="" id=""></div>
+        <div class="card"><input type="text" name="" id=""></div>
+        <div class="card"><input type="text" name="" id=""></div>
+    </div>
+<script>
+    let a = [1,2,3];
+    let b = a;
+    console.log(b)
+    b[0] = 99;
+    console.log(a[0]);
+    let x = "1" + "1" -1;
+    x = -1 + 1 + "1";
+    console.log(x)
+
+</script>
+</body>
+</html>
